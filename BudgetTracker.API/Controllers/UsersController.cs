@@ -4,7 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApplicationCore.Entities;
+using ApplicationCore.Models.Request;
 using ApplicationCore.ServiceInterfaces;
+using Infrastructure.Repositories;
 
 namespace BudgetTracker.API.Controllers
 {
@@ -42,6 +45,30 @@ namespace BudgetTracker.API.Controllers
             {
                 return NotFound("We did not find any user");
             }
+            return Ok(user);
+        }
+
+        [HttpPost]
+        [Route("createuser")]
+        public async Task<IActionResult> CreateUser(UserRequestModel model)
+        {
+            var user = await _userService.CreateUser(model);
+            return Ok(user);
+        }
+
+        [HttpPut]
+        [Route("updateuser")]
+        public async Task<IActionResult> UpdateUser(UserUpdateRequestModel model)
+        {
+            var updatedUser = await _userService.UpdateUser(model);
+            return Ok(updatedUser);
+        }
+
+        [HttpDelete]
+        [Route("{id:int}", Name = "DeleteUser")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var user = await _userService.DeleteUser(id);
             return Ok(user);
         }
     }

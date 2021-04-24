@@ -46,6 +46,10 @@ namespace BudgetTracker.API
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<EFRepository<User>, UserRepository>();
+            //services.AddScoped<IIncomeService, IncomeService>();
+            //services.AddScoped<IAsyncRepository<Income>, EFRepository<Income>>();
+            //services.AddScoped<IExpenditureService, ExpenditureService>();
+            //services.AddScoped<IAsyncRepository<Expenditure>, EFRepository<Expenditure>>();
 
             // HttpContext
             services.AddHttpContextAccessor();

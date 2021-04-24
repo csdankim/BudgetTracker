@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApplicationCore.Entities;
+using ApplicationCore.Models.Request;
 using ApplicationCore.Models.Response;
 using ApplicationCore.ServiceInterfaces;
 using Infrastructure.Repositories;
@@ -19,10 +20,10 @@ namespace Infrastructure.Services
         public async Task<List<UserResponseModel>> GetAllUsers()
         {
             var users = await _userRepository.ListAllAsync();
-            var userResponse = new List<UserResponseModel>();
+            var userResponseList = new List<UserResponseModel>();
             foreach (var user in users)
             {
-                userResponse.Add(new UserResponseModel
+                userResponseList.Add(new UserResponseModel
                 {
                     Id = user.Id,
                     Email = user.Email,
@@ -31,7 +32,7 @@ namespace Infrastructure.Services
                 });
             }
 
-            return userResponse;
+            return userResponseList;
         }
 
         public async Task<UserDetailResponseModel> GetUserDetails(int id)
@@ -75,6 +76,70 @@ namespace Infrastructure.Services
             };
 
             return userDetailResponseModel;
+        }
+
+        public async Task<UserResponseModel> CreateUser(UserRequestModel userRequestModel)
+        {
+            var user = new User
+            {
+                Email = userRequestModel.Email,
+                Fullname = userRequestModel.Fullname,
+                Password = userRequestModel.Password,
+                JoinedOn = userRequestModel.JoinedOn
+            };
+
+            var createdUser = await _userRepository.AddAsync(user);
+
+            var createdUserResponseModel = new UserResponseModel
+            {
+                Id = createdUser.Id,
+                Email = createdUser.Email,
+                Fullname = createdUser.Fullname,
+                JoinedOn = createdUser.JoinedOn
+            };
+
+            return createdUserResponseModel;
+        }
+
+        public async Task<UserResponseModel> UpdateUser(UserUpdateRequestModel userUpdateRequestModel)
+        {
+            var updateUser = new User
+            {
+                Id = userUpdateRequestModel.Id,
+                Email = userUpdateRequestModel.Email,
+                Fullname = userUpdateRequestModel.Fullname,
+                Password = userUpdateRequestModel.Password,
+                JoinedOn = userUpdateRequestModel.JoinedOn
+            };
+
+            var updatedUser = await _userRepository.UpdateAsync(updateUser);
+
+            var updatedUserResponseModel = new UserResponseModel
+            {
+                Id = updatedUser.Id,
+                Email = updatedUser.Email,
+                Fullname = updatedUser.Fullname,
+                JoinedOn = updatedUser.JoinedOn
+            };
+
+            return updatedUserResponseModel;
+        }
+
+        public async Task<UserResponseModel> DeleteUser(int id)
+        {
+            var user = await _userRepository.GetByIdAsync(id);
+
+            await _userRepository.DeleteAsync(user);
+
+            var deletedUserResponseModel = new UserResponseModel
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Fullname = user.Fullname,
+                JoinedOn = user.JoinedOn
+            };
+
+            return deletedUserResponseModel;
         }
     }
 }
