@@ -25,10 +25,8 @@ namespace Infrastructure.Data
         {
             builder.ToTable("Users");
             builder.HasKey(u => u.Id);
-            builder.HasIndex(u => u.Email).IsUnique();
-            builder.Property(u => u.Email).HasMaxLength(50);
-            builder.HasIndex(u => u.Password).IsUnique();
-            builder.Property(u => u.Password).HasMaxLength(10);
+            builder.Property(u => u.Email).HasMaxLength(50).IsRequired();
+            builder.Property(u => u.Password).HasMaxLength(10).IsRequired();
             builder.Property(u => u.Fullname).HasMaxLength(50);
             builder.Property(u => u.JoinedOn);
         }
