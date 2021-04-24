@@ -10,9 +10,9 @@ namespace Infrastructure.Services
 {
     public class UserService:IUserService
     {
-        private readonly EFRepository<User> _userRepository;
+        private readonly EfRepository<User> _userRepository;
 
-        public UserService(EFRepository<User> userRepository)
+        public UserService(EfRepository<User> userRepository)
         {
             _userRepository = userRepository;
         }

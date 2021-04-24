@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    public class EFRepository<T>:IAsyncRepository<T> where T:class
+    public class EfRepository<T>:IAsyncRepository<T> where T:class
     {
         protected readonly BudgetTrackerDbContext _dbContext;
 
-        public EFRepository(BudgetTrackerDbContext dbContext)
+        public EfRepository(BudgetTrackerDbContext dbContext)
         {
             _dbContext = dbContext;
         }

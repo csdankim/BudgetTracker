@@ -11,14 +11,14 @@ namespace Infrastructure.Services
 {
     public class IncomeService:IIncomeService
     {
-        private readonly EFRepository<Income> _incomeRepository;
+        private readonly IAsyncRepository<Income> _incomeRepository;
 
-        public IncomeService(EFRepository<Income> incomeRepository)
+        public IncomeService(IAsyncRepository<Income> incomeRepository)
         {
             _incomeRepository = incomeRepository;
         }
 
-        public async Task<List<IncomeResponseModel>> GetAllIncomes()
+        /*public async Task<List<IncomeResponseModel>> GetAllIncomes()
         {
             var incomes = await _incomeRepository.ListAllAsync();
             var incomeResponseList = new List<IncomeResponseModel>();
@@ -52,7 +52,7 @@ namespace Infrastructure.Services
             };
 
             return incomeResponse;
-        }
+        }*/
 
         public async Task<IncomeResponseModel> CreateIncome(IncomeRequestModel incomeRequestModel)
         {

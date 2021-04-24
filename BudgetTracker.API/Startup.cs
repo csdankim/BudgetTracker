@@ -45,11 +45,11 @@ namespace BudgetTracker.API
                 options.UseSqlServer(Configuration.GetConnectionString("BudgetTrackerDbConnection")));
 
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<EFRepository<User>, UserRepository>();
-            //services.AddScoped<IIncomeService, IncomeService>();
-            //services.AddScoped<IAsyncRepository<Income>, EFRepository<Income>>();
-            //services.AddScoped<IExpenditureService, ExpenditureService>();
-            //services.AddScoped<IAsyncRepository<Expenditure>, EFRepository<Expenditure>>();
+            services.AddScoped<EfRepository<User>, UserRepository>();
+            services.AddScoped<IIncomeService, IncomeService>();
+            services.AddScoped<IAsyncRepository<Income>, EfRepository<Income>>();
+            services.AddScoped<IExpenditureService, ExpenditureService>();
+            services.AddScoped<IAsyncRepository<Expenditure>, EfRepository<Expenditure>>();
 
             // HttpContext
             services.AddHttpContextAccessor();

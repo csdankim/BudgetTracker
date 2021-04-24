@@ -20,7 +20,7 @@ namespace BudgetTracker.API.Controllers
             _incomeService = incomeService;
         }
 
-        [HttpGet]
+        /*[HttpGet]
         [Route("allIncomes")]
         public async Task<IActionResult> GetAllIncomes()
         {
@@ -44,7 +44,7 @@ namespace BudgetTracker.API.Controllers
                 return NotFound("We did not find any income");
             }
             return Ok(user);
-        }
+        }*/
 
         [HttpPost]
         [Route("createincome")]

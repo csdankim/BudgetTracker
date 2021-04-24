@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using ApplicationCore.Entities;
 using ApplicationCore.Models.Request;
 using ApplicationCore.Models.Response;
+using ApplicationCore.RepositoryInterfaces;
 using ApplicationCore.ServiceInterfaces;
 using Infrastructure.Repositories;
 
@@ -10,9 +11,9 @@ namespace Infrastructure.Services
 {
     public class ExpenditureService:IExpenditureService
     {
-        private readonly EFRepository<Expenditure> _expenditureRepository;
+        private readonly IAsyncRepository<Expenditure> _expenditureRepository;
 
-        public ExpenditureService(EFRepository<Expenditure> expenditureRepository)
+        public ExpenditureService(IAsyncRepository<Expenditure> expenditureRepository)
         {
             _expenditureRepository = expenditureRepository;
         }

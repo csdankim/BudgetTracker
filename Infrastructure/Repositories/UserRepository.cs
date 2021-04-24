@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    public class UserRepository : EFRepository<User>
+    public class UserRepository : EfRepository<User>
     {
         public UserRepository(BudgetTrackerDbContext dbContext) : base(dbContext)
         {
