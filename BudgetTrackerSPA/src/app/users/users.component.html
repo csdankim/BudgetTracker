@@ -1,0 +1,74 @@
+<div>
+  <h1>User Details</h1>
+</div>
+<hr />
+<div>
+  <div class="col-4 userfacts">
+    <h3>Basic User Info</h3>
+    <hr />
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        User Id: {{ user?.id }}
+      </li>
+      <li class="list-group-item">
+        User Name: {{ user?.fullname }}
+      </li>
+      <li class="list-group-item">
+        User Email: {{ user?.email }}
+      </li>
+      <li class="list-group-item">
+        User JoinedOn: {{ user?.joinedOn }}
+      </li>
+    </ul>
+  </div>
+  <hr />
+  <div class="col-6 userfacts">
+    <h3>User Incomes</h3>
+    <hr />
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">IncomeId</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Description</th>
+          <th scope="col">Income Date</th>
+          <th scope="col">Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let income of user?.incomes">
+          <td>{{ income.id }}</td>
+          <td>{{ income.amount }}</td>
+          <td>{{ income.description }}</td>
+          <td>{{ income.incomeDate }}</td>
+          <td>{{ income.remarks }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr />
+  <div class="col-6 userfacts">
+    <h3>User Expenditures</h3>
+    <hr />
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ExpenditureId</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Description</th>
+          <th scope="col">Exp Date</th>
+          <th scope="col">Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expenditure of user?.expenditures">
+          <td>{{ expenditure.id }}</td>
+          <td>{{ expenditure.amount }}</td>
+          <td>{{ expenditure.description }}</td>
+          <td>{{ expenditure.expDate }}</td>
+          <td>{{ expenditure.remarks }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
