@@ -18,7 +18,7 @@ namespace Infrastructure.Services
             _incomeRepository = incomeRepository;
         }
 
-        /*public async Task<List<IncomeResponseModel>> GetAllIncomes()
+        public async Task<List<IncomeResponseModel>> GetAllIncomes()
         {
             var incomes = await _incomeRepository.ListAllAsync();
             var incomeResponseList = new List<IncomeResponseModel>();
@@ -52,7 +52,7 @@ namespace Infrastructure.Services
             };
 
             return incomeResponse;
-        }*/
+        }
 
         public async Task<IncomeResponseModel> CreateIncome(IncomeRequestModel incomeRequestModel)
         {
