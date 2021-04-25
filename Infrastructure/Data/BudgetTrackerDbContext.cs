@@ -29,7 +29,7 @@ namespace Infrastructure.Data
             builder.Property(u => u.Email).HasMaxLength(50).IsRequired();
             builder.Property(u => u.Password).HasMaxLength(10).IsRequired();
             builder.Property(u => u.Fullname).HasMaxLength(50);
-            builder.Property(u => u.JoinedOn);
+            builder.Property(u => u.JoinedOn).HasDefaultValueSql("getdate()");
         }
 
         private void ConfigureIncome(EntityTypeBuilder<Income> builder)
@@ -37,9 +37,9 @@ namespace Infrastructure.Data
             builder.ToTable("Incomes");
             builder.HasKey(i=> i.Id);
             builder.Property(i => i.UserId);
-            builder.Property(i => i.Amount).IsRequired();
+            builder.Property(i => i.Amount).HasColumnType("money").IsRequired();
             builder.Property(i => i.Description).HasMaxLength(100);
-            builder.Property(i => i.IncomeDate);
+            builder.Property(i => i.IncomeDate).HasDefaultValueSql("getdate()");
             builder.Property(i => i.Remarks).HasMaxLength(500);
             builder.HasOne(i=>i.User).WithMany(i => i.Incomes).HasForeignKey(i => i.UserId);
         }
@@ -49,9 +49,9 @@ namespace Infrastructure.Data
             builder.ToTable("Expenditures");
             builder.HasKey(e => e.Id);
             builder.Property(e => e.UserId);
-            builder.Property(e => e.Amount).IsRequired();
+            builder.Property(e => e.Amount).HasColumnType("money").IsRequired();
             builder.Property(e => e.Description).HasMaxLength(100);
-            builder.Property(e => e.ExpDate);
+            builder.Property(e => e.ExpDate).HasDefaultValueSql("getdate()");
             builder.Property(e => e.Remarks).HasMaxLength(500);
             builder.HasOne(e => e.User).WithMany(e =>e.Expenditures).HasForeignKey(e => e.UserId);
         }
