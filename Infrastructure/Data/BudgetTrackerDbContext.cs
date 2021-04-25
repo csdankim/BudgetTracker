@@ -16,6 +16,7 @@ namespace Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasSequence<int>("OrderNumbers", schema: "shared").StartsAt(1).IncrementsBy(1);
             modelBuilder.Entity<User>(ConfigureUser);
             modelBuilder.Entity<Income>(ConfigureIncome);
             modelBuilder.Entity<Expenditure>(ConfigureExpenditure);
